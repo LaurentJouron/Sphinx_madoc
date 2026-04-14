@@ -15,4 +15,4 @@ DRF
     `Django rest framework <https://www.django-rest-framework.org/>`_.
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 5
