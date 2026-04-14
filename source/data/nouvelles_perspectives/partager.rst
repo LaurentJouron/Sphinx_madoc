@@ -8,13 +8,6 @@ Partager
    :align: center
    :alt: partager logo
 
-.. raw:: html
-
-   <div style="text-align: center;">
-       <a href="_static/_buttons/button_download.png" download class="button">
-          <img src="../../_static/_buttons/button_download.png" alt="Donwload button" width="100" height="50" />
-       </a>
-   </div>
 
 Tout comme ils se sont assurés que les données étaient soigneusement protégées, les analystes ont également pris soin du partage du rapport. 
 Seuls les managers qui ont atteint ou dépassé le nombre minimal de subordonnés directs ayant soumis des réponses au sondage étaient 

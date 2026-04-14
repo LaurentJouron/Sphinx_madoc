@@ -8,13 +8,6 @@ Agir
    :align: center
    :alt: agir logo
 
-.. raw:: html
-
-   <div style="text-align: center;">
-       <a href="_static/_buttons/button_download.png" download class="button">
-          <img src="../../_static/_buttons/button_download.png" alt="Donwload button" width="100" height="50" />
-       </a>
-   </div>
 
 La dernière étape du processus pour l’équipe d’analystes consistait à travailler avec les dirigeants de leur entreprise et décider 
 de la meilleure façon de mettre en œuvre des changements et de prendre des mesures, en fonction des résultats. Les analystes ont 

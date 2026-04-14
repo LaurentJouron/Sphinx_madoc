@@ -9,14 +9,6 @@ Préparer
    :align: center
    :alt: prepare logo
 
-.. raw:: html
-
-   <div style="text-align: center;">
-       <a href="_static/_buttons/button_download.png" download class="button">
-          <img src="../../_static/_buttons/button_download.png" alt="Donwload button" width="100" height="50" />
-       </a>
-   </div>
-
 
 Tout a commencé par une préparation solide. Le groupe a établi un calendrier sur trois mois et a décidé comment il voulait transmettre 
 ses progrès aux parties intéressées. Au cours de cette étape, les analystes ont également identifié les données dont ils avaient besoin 

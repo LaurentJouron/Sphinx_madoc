@@ -8,13 +8,6 @@ Demander
    :align: center
    :alt: ask logo
 
-.. raw:: html
-
-   <div style="text-align: center;">
-       <a href="_static/_buttons/button_download.png" download class="button">
-          <img src="../../_static/_buttons/button_download.png" alt="Donwload button" width="100" height="50" />
-       </a>
-   </div>
 
 Tout d’abord, les analystes devaient définir ce à quoi ressemblerait le projet et ce qui serait considéré comme un résultat positif. 
 Donc, pour déterminer ces éléments, ils ont posé des questions pertinentes et ont collaboré avec des dirigeants et des managers qui 

@@ -8,13 +8,6 @@ Analyser
    :align: center
    :alt: analyser logo
 
-.. raw:: html
-
-   <div style="text-align: center;">
-       <a href="_static/_buttons/button_download.png" download class="button">
-          <img src="../../_static/_buttons/button_download.png" alt="Donwload button" width="100" height="50" />
-       </a>
-   </div>
 
 Ensuite, les analystes ont fait ce qu’ils font le mieux : analyser ! À partir des enquêtes, les analystes de données vont découvrir 
 que l’expérience d’un nouvel employé dans certains processus était un indicateur clé de la satisfaction globale au travail. Les analystes 

@@ -13,9 +13,10 @@ Django
     `Django <https://www.djangoproject.com/>`_.
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 5
 
    drf/index
    wagtail/index
    cookiecutter/index
+   uv/index
    project_initialisation

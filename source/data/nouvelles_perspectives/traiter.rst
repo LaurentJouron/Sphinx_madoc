@@ -8,13 +8,6 @@ Traiter
    :align: center
    :alt: traiter logo
 
-.. raw:: html
-
-   <div style="text-align: center;">
-       <a href="_static/_buttons/button_download.png" download class="button">
-          <img src="../../_static/_buttons/button_download.png" alt="Donwload button" width="100" height="50" />
-       </a>
-   </div>
 
 Le groupe a envoyé l’enquête. Les bons analystes savent respecter à la fois leurs données et les personnes qui les fournissent. 
 Les employés fournissant des données, il était important de s’assurer que tous donnaient leur consentement pour participer. 

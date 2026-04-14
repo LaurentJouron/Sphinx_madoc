@@ -1,0 +1,1484 @@
+<!doctype html>
+<html class="no-js" lang="fr" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Documentation technique" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://laurentjouron.github.io/django/uv/document_technique.html" />
+<meta property="og:site_name" content="Madoc" />
+<meta property="og:description" content="Vue d’ensemble: Le fichier Microsoft.PowerShell_profile.ps1 est un profil PowerShell chargé automatiquement à chaque ouverture d’un terminal. Il constitue un environnement de développement complet ..." />
+<meta property="og:image" content="https://laurentjouron.github.io/_static/ikigai-cercle.png" />
+<meta property="og:image:alt" content="Madoc" />
+<meta name="description" content="Vue d’ensemble: Le fichier Microsoft.PowerShell_profile.ps1 est un profil PowerShell chargé automatiquement à chaque ouverture d’un terminal. Il constitue un environnement de développement complet ..." />
+<meta property="og:image:width" content="200">
+<meta property="og:image:height" content="200">
+<meta name="theme-color" content="#3776ab">
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Recherche" href="../../search.html"><link rel="next" title="Utilisation" href="utilisation.html"><link rel="prev" title="uv" href="index.html">
+        <link rel="prefetch" href="../../_static/ikigai-cercle.png" as="image">
+
+    <link rel="shortcut icon" href="../../_static/ikigai-cercle.png"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Documentation technique - Madoc</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/devguide_overrides.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --color-brand-primary: #bf1e2e;
+  --color-brand-content: #bf1e2e;
+  --font-stack: Verdana, Arial, sans-serif;
+  --font-stack--monospace: Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #3c65af;
+  --color-brand-content: #3c65af;
+  --font-stack: Verdana, Arial, sans-serif;
+  --font-stack--monospace: Courier, monospace;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #3c65af;
+  --color-brand-content: #3c65af;
+  --font-stack: Verdana, Arial, sans-serif;
+  --font-stack--monospace: Courier, monospace;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Madoc</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/ikigai-cercle.png" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Recherche" name="q" aria-label="Recherche">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/index.html">Python</a><input aria-label="Toggle navigation of Python" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python/pep8/index.html">Pep8</a><input aria-label="Toggle navigation of Pep8" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python/pep8/flake8/index.html">Flake8</a><input aria-label="Toggle navigation of Flake8" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python/pep8/flake8/inistalisation.html">Initialisation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python/library/index.html">Library</a><input aria-label="Toggle navigation of Library" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python/library/pandas/index.html">Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python/library/fake/index.html">Fake</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python/library/beautifulsoup/index.html">BeautifulSoup</a><input aria-label="Toggle navigation of BeautifulSoup" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python/library/beautifulsoup/composants.html">Composants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/library/beautifulsoup/fonctionnalities.html">Fonctionnalitées</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/library/beautifulsoup/beautifulsoup_exemple.html">Exemple Beautifulsoup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/virtual_environment/index.html">Environnement virtuel</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python/algorithme/index.html">Algorithme</a><input aria-label="Toggle navigation of Algorithme" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python/algorithme/expert/index.html">Expert</a><input aria-label="Toggle navigation of Expert" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python/algorithme/expert/arithmetic_analysis/index.html">Analyse arithmétique</a><input aria-label="Toggle navigation of Analyse arithmétique" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python/algorithme/expert/arithmetic_analysis/bissection.html">Bissection</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python/algorithme/expert/arithmetic_analysis/intersection.html">Intersection</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python/algorithme/expert/arithmetic_analysis/lu_decomposition.html">Lu decomposition</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python/algorithme/expert/arithmetic_analysis/newton_method.html">Newton method</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/algorithme/expert/binary_tree.html">Arbre binaire</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python/algorithme/expert/graph/index.html">Graphs</a><input aria-label="Toggle navigation of Graphs" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python/algorithme/expert/graph/breadth_first_search.html">Breadth-First Search</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python/algorithme/expert/graph/depth_first_search.html">Depth-First Search</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Django</a><input aria-label="Toggle navigation of Django" checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../drf/index.html">DRF</a><input aria-label="Toggle navigation of DRF" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../wagtail/index.html">Wagtail</a><input aria-label="Toggle navigation of Wagtail" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cookiecutter/index.html">Cookiecutter</a><input aria-label="Toggle navigation of Cookiecutter" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">uv</a><input aria-label="Toggle navigation of uv" checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Documentation technique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilisation.html">Utilisation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../project_initialisation.html">Initialisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../docker/index.html">Docker</a><input aria-label="Toggle navigation of Docker" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../docker/docker_compose/index.html">Docker-compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../docker/dockerfile/index.html">Dockerfile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../docker/dockerhub/index.html">Dockerhub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../docker/installation.html">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../github/index.html">Github</a><input aria-label="Toggle navigation of Github" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../github/actions/index.html">Actions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../github/initialisation/index.html">Initialisation</a><input aria-label="Toggle navigation of Initialisation" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../github/initialisation/compte.html">Création d’un compte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../github/initialisation/repository.html">Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../github/branch.html">Branches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sentry/index.html">Sentry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../circleci/index.html">Circleci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/index.html">Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest/index.html">Pytest</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../docstrings/index.html">Docstrings</a><input aria-label="Toggle navigation of Docstrings" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../docstrings/google.html">Google</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../docstrings/numpy_scipy.html">Numpy/Scipy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../youtube/index.html">Youtube</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data/index.html">Data</a><input aria-label="Toggle navigation of Data" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../data/nouvelles_perspectives/index.html">Nouvelles perspectives</a><input aria-label="Toggle navigation of Nouvelles perspectives" class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../data/nouvelles_perspectives/demander.html">Demander</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/nouvelles_perspectives/preparer.html">Préparer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/nouvelles_perspectives/traiter.html">Traiter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/nouvelles_perspectives/analyser.html">Analyser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/nouvelles_perspectives/partager.html">Partager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/nouvelles_perspectives/agir.html">Agir</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/comp%C3%A9tences_analytiques/index.html">Compétences analytiques</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="documentation-technique">
+<span id="document-technique"></span><h1>Documentation technique<a class="headerlink" href="#documentation-technique" title="Lien vers cette rubrique">¶</a></h1>
+<section id="vue-d-ensemble">
+<h2>Vue d’ensemble<a class="headerlink" href="#vue-d-ensemble" title="Lien vers cette rubrique">¶</a></h2>
+<p>Le fichier <code class="docutils literal notranslate"><span class="pre">Microsoft.PowerShell_profile.ps1</span></code> est un profil PowerShell chargé automatiquement à chaque ouverture d’un terminal. Il constitue un environnement de développement complet et opinionné pour la création et la gestion de projets Django full-stack sous Windows.</p>
+<p><strong>Stack cible</strong></p>
+<ul class="simple">
+<li><p><strong>Back-end</strong> : Django, django-allauth, Django REST Framework, Celery, Channels</p></li>
+<li><p><strong>Front-end</strong> : AlpineJS, HTMX, Tailwind CSS (via django-tailwind)</p></li>
+<li><p><strong>Base de données</strong> : SQLite3 en développement local, PostgreSQL en production Docker</p></li>
+<li><p><strong>Gestionnaire de paquets</strong> : <code class="docutils literal notranslate"><span class="pre">uv</span></code> (remplace pip/virtualenv)</p></li>
+<li><p><strong>Infrastructure</strong> : Docker, Nginx, GitHub Actions, Synology DSM</p></li>
+<li><p><strong>Prompt</strong> : Starship</p></li>
+<li><p><strong>Complétion</strong> : PSReadLine</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="installation-et-prerequis">
+<h2>Installation et prérequis<a class="headerlink" href="#installation-et-prerequis" title="Lien vers cette rubrique">¶</a></h2>
+<section id="prerequis-systeme">
+<h3>Prérequis système<a class="headerlink" href="#prerequis-systeme" title="Lien vers cette rubrique">¶</a></h3>
+<p>Les outils suivants doivent être installés et disponibles dans le <code class="docutils literal notranslate"><span class="pre">PATH</span></code> avant de charger le profil :</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Outil</p></th>
+<th class="head"><p>Rôle</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uv</span></code></p></td>
+<td><p>Gestionnaire de paquets et d’environnements virtuels Python</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span></code></p></td>
+<td><p>Contrôle de version</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">starship</span></code></p></td>
+<td><p>Prompt personnalisé (<code class="docutils literal notranslate"><span class="pre">starship</span> <span class="pre">init</span> <span class="pre">powershell</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">code</span></code></p></td>
+<td><p>Visual Studio Code, appelé en fin de <code class="docutils literal notranslate"><span class="pre">uvdjpro</span></code> pour ouvrir le projet</p></td>
+</tr>
+<tr class="row-even"><td><p>PowerShell 7+</p></td>
+<td><p>Le profil utilise des fonctionnalités PS7 (<code class="docutils literal notranslate"><span class="pre">-replace</span></code>, <code class="docutils literal notranslate"><span class="pre">Set-Content</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="emplacement-du-profil">
+<h3>Emplacement du profil<a class="headerlink" href="#emplacement-du-profil" title="Lien vers cette rubrique">¶</a></h3>
+<p>Le fichier doit être placé au chemin retourné par la variable <code class="docutils literal notranslate"><span class="pre">$PROFILE</span></code> dans PowerShell :</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$PROFILE</span>
+<span class="c"># Exemple : C:\Users\&lt;user&gt;\Documents\PowerShell\Microsoft.PowerShell_profile.ps1</span>
+</pre></div>
+</div>
+<p>Pour recharger le profil sans redémarrer le terminal :</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">.</span> <span class="nv">$PROFILE</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="section-1-preambule-et-helpers">
+<h2>Section 1 — Préambule et helpers<a class="headerlink" href="#section-1-preambule-et-helpers" title="Lien vers cette rubrique">¶</a></h2>
+<section id="comportement-global">
+<h3>Comportement global<a class="headerlink" href="#comportement-global" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s2">&quot;Stop&quot;</span>
+</pre></div>
+</div>
+<p>Cette ligne configure PowerShell pour interrompre l’exécution dès qu’une erreur non gérée survient. Cela garantit qu’un échec intermédiaire dans <code class="docutils literal notranslate"><span class="pre">uvdjpro</span></code> (par exemple une installation de paquet) stoppe le script plutôt que de continuer dans un état incohérent.</p>
+</section>
+<section id="fonctions-utilitaires-internes">
+<h3>Fonctions utilitaires internes<a class="headerlink" href="#fonctions-utilitaires-internes" title="Lien vers cette rubrique">¶</a></h3>
+<p>Ces deux fonctions sont utilisées en interne par les générateurs. Elles ne sont pas destinées à être appelées directement.</p>
+<section id="new-directorysafe">
+<h4><code class="docutils literal notranslate"><span class="pre">New-DirectorySafe</span></code><a class="headerlink" href="#new-directorysafe" title="Lien vers cette rubrique">¶</a></h4>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nb">New-DirectorySafe</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span><span class="no">[string]</span><span class="nv">$Path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nb">Test-Path</span> <span class="nv">$Path</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">Directory</span> <span class="n">-Path</span> <span class="nv">$Path</span> <span class="p">|</span> <span class="nb">Out-Null</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Crée un répertoire uniquement s’il n’existe pas déjà. Équivalent de <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span></code> sous Unix. Utilisée massivement dans <code class="docutils literal notranslate"><span class="pre">uvdjpro</span></code> pour construire l’arborescence du projet.</p>
+</section>
+<section id="to-titlecasefromsnake">
+<h4><code class="docutils literal notranslate"><span class="pre">To-TitleCaseFromSnake</span></code><a class="headerlink" href="#to-titlecasefromsnake" title="Lien vers cette rubrique">¶</a></h4>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">To-TitleCaseFromSnake</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span><span class="no">[string]</span><span class="nv">$snake</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">$snake</span><span class="p">.</span><span class="n">ToLower</span><span class="p">()</span> <span class="o">-replace</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span> <span class="n">-split</span> <span class="s2">&quot; &quot;</span> <span class="p">|</span>
+        <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">1</span><span class="p">).</span><span class="n">ToUpper</span><span class="p">()</span> <span class="p">+</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">1</span><span class="p">)</span> <span class="p">})</span> <span class="n">-join</span> <span class="s2">&quot; &quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Convertit un identifiant <code class="docutils literal notranslate"><span class="pre">snake_case</span></code> en <code class="docutils literal notranslate"><span class="pre">Title</span> <span class="pre">Case</span></code> lisible. Exemple : <code class="docutils literal notranslate"><span class="pre">mon_projet</span></code> → <code class="docutils literal notranslate"><span class="pre">Mon</span> <span class="pre">Projet</span></code>. Utilisée dans <code class="docutils literal notranslate"><span class="pre">uvdjpro</span></code> pour générer le <code class="docutils literal notranslate"><span class="pre">project_title</span></code> affiché dans les templates HTML, le README et le manifest PWA.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="section-2-starship-prompt">
+<h2>Section 2 — Starship Prompt<a class="headerlink" href="#section-2-starship-prompt" title="Lien vers cette rubrique">¶</a></h2>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Invoke-Expression</span> <span class="p">(&amp;</span><span class="n">starship</span> <span class="n">init</span> <span class="n">powershell</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Initialise le prompt <a class="reference external" href="https://starship.rs">Starship</a> au démarrage du terminal. Starship affiche des informations contextuelles (branche Git, version Python, statut de l’environnement virtuel) dans l’invite de commande. Cette ligne est exécutée en dehors de toute fonction et s’applique donc à chaque session.</p>
+<p><strong>Dépendance</strong> : <code class="docutils literal notranslate"><span class="pre">starship</span></code> doit être installé et dans le <code class="docutils literal notranslate"><span class="pre">PATH</span></code>. Si ce n’est pas le cas, l’ouverture du terminal produit une erreur. Pour désactiver temporairement, commenter la ligne.</p>
+</section>
+<hr class="docutils" />
+<section id="section-3-psreadline">
+<h2>Section 3 — PSReadLine<a class="headerlink" href="#section-3-psreadline" title="Lien vers cette rubrique">¶</a></h2>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Import-Module</span> <span class="n">PSReadLine</span>
+<span class="nb">Set-PSReadLineOption</span> <span class="n">-PredictionSource</span> <span class="nb">History</span>
+<span class="nb">Set-PSReadLineOption</span> <span class="n">-HistoryNoDuplicates</span>
+<span class="nb">Set-PSReadLineOption</span> <span class="n">-HistorySaveStyle</span> <span class="n">SaveIncrementally</span>
+<span class="nb">Set-PSReadLineKeyHandler</span> <span class="n">-Key</span> <span class="n">RightArrow</span> <span class="n">-Function</span> <span class="n">AcceptSuggestion</span>
+</pre></div>
+</div>
+<p>Configuration de l’auto-complétion et de l’historique :</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Effet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PredictionSource</span> <span class="pre">History</span></code></p></td>
+<td><p>Suggère des commandes basées sur l’historique</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">HistoryNoDuplicates</span></code></p></td>
+<td><p>Évite les doublons dans l’historique</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SaveIncrementally</span></code></p></td>
+<td><p>Sauvegarde l’historique après chaque commande (et non à la fermeture)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RightArrow</span> <span class="pre">→</span> <span class="pre">AcceptSuggestion</span></code></p></td>
+<td><p>Valide la suggestion en cours avec la flèche droite</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="section-4-alias-git">
+<h2>Section 4 — Alias Git<a class="headerlink" href="#section-4-alias-git" title="Lien vers cette rubrique">¶</a></h2>
+<p>Les alias Git sont implémentés comme des fonctions PowerShell (et non comme des <code class="docutils literal notranslate"><span class="pre">Set-Alias</span></code>) pour permettre le passage d’arguments.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 35.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fonction</p></th>
+<th class="head"><p>Commande équivalente</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gst</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gaa</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code></p></td>
+<td><p>Ajoute tous les fichiers modifiés</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gco</span> <span class="pre">&lt;msg&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&lt;msg&gt;</span></code></p></td>
+<td><p>Le message est un paramètre positionnel</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gpu</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gll</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span> <span class="pre">--graph</span> <span class="pre">--decorate</span></code></p></td>
+<td><p>Vue condensée du graphe des commits</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gundo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--soft</span> <span class="pre">HEAD~1</span></code></p></td>
+<td><p>Annule le dernier commit sans supprimer les modifications</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les alias <code class="docutils literal notranslate"><span class="pre">gco</span></code>, <code class="docutils literal notranslate"><span class="pre">gpu</span></code>, <code class="docutils literal notranslate"><span class="pre">gll</span></code> étaient initialement définis avec <code class="docutils literal notranslate"><span class="pre">Set-Alias</span></code>, ce qui provoquait un conflit avec les fonctions du même nom. La version actuelle utilise uniquement des fonctions.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="section-5-alias-uv">
+<h2>Section 5 — Alias uv<a class="headerlink" href="#section-5-alias-uv" title="Lien vers cette rubrique">¶</a></h2>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fonction</p></th>
+<th class="head"><p>Commande équivalente</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uvsh</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.venv\Scripts\Activate.ps1</span></code></p></td>
+<td><p>Active l’environnement virtuel Windows</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uvadd</span> <span class="pre">&lt;pkg&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">add</span> <span class="pre">&lt;pkg&gt;</span></code></p></td>
+<td><p>Installe un paquet et met à jour <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uvserve</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">runserver</span></code></p></td>
+<td><p>Démarre le serveur Django via uv</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uvpy</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span></code></p></td>
+<td><p>Lance l’interpréteur Python dans le venv courant</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p><code class="docutils literal notranslate"><span class="pre">uvsh</span></code> utilise le chemin Windows <code class="docutils literal notranslate"><span class="pre">\Scripts\Activate.ps1</span></code>. Cette commande ne fonctionne que si le dossier de travail courant est la racine du projet (là où se trouve <code class="docutils literal notranslate"><span class="pre">.venv</span></code>).</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="section-6-commandes-django">
+<h2>Section 6 — Commandes Django<a class="headerlink" href="#section-6-commandes-django" title="Lien vers cette rubrique">¶</a></h2>
+<p>Ces fonctions sont des raccourcis pour les commandes <code class="docutils literal notranslate"><span class="pre">manage.py</span></code> les plus fréquentes. Elles utilisent toutes <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span></code> pour s’assurer que Python est exécuté dans l’environnement virtuel correct sans activation préalable.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fonction</p></th>
+<th class="head"><p>Commande équivalente</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">djrun</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">runserver</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">djmig</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">migrate</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">djmakemig</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">makemigrations</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">djsh</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">shell</span></code></p></td>
+<td><p>Shell Django interactif</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">djtest</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">test</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">djadmin</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">createsuperuser</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">djtw</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">tailwind</span> <span class="pre">start</span></code></p></td>
+<td><p>Lance le watcher Tailwind CSS (django-tailwind)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">djclean</span></code></p></td>
+<td><p>Suppression récursive de <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code> et <code class="docutils literal notranslate"><span class="pre">*.pyc</span></code></p></td>
+<td><p>Utilise <code class="docutils literal notranslate"><span class="pre">Get-ChildItem</span> <span class="pre">-Recurse</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="section-7-djapp-pro">
+<h2>Section 7 — <code class="docutils literal notranslate"><span class="pre">djapp_pro</span></code><a class="headerlink" href="#section-7-djapp-pro" title="Lien vers cette rubrique">¶</a></h2>
+<section id="signature">
+<h3>Signature<a class="headerlink" href="#signature" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">djapp_pro</span> <span class="n">-name</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h3>Description<a class="headerlink" href="#description" title="Lien vers cette rubrique">¶</a></h3>
+<p>Crée une application Django structurée dans le dossier <code class="docutils literal notranslate"><span class="pre">apps/</span></code>. Appelle <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">startapp</span> <span class="pre">&lt;name&gt;</span> <span class="pre">apps/&lt;name&gt;</span></code> puis surcharge les fichiers générés avec une structure PRO.</p>
+</section>
+<section id="fichiers-generes">
+<h3>Fichiers générés<a class="headerlink" href="#fichiers-generes" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>apps/&lt;name&gt;/
+├── (fichiers Django standard via startapp)
+├── urls.py          ← url racine &quot;&quot; → views.index, app_name défini
+├── views.py         ← vue index basique (fonction)
+├── templates/
+│   └── &lt;name&gt;/
+│       └── index.html   ← extends layouts/main-layout.html
+└── static/
+    └── &lt;name&gt;/
+</pre></div>
+</div>
+</section>
+<section id="comportement-post-generation">
+<h3>Comportement post-génération<a class="headerlink" href="#comportement-post-generation" title="Lien vers cette rubrique">¶</a></h3>
+<p>Le script affiche deux rappels en jaune :</p>
+<ol class="arabic simple">
+<li><p>Ajouter <code class="docutils literal notranslate"><span class="pre">'&lt;name&gt;'</span></code> à <code class="docutils literal notranslate"><span class="pre">LOCAL_APPS</span></code> dans <code class="docutils literal notranslate"><span class="pre">config/settings/base.py</span></code></p></li>
+<li><p>Ajouter <code class="docutils literal notranslate"><span class="pre">path('&lt;name&gt;/',</span> <span class="pre">include('&lt;name&gt;.urls',</span> <span class="pre">namespace='&lt;name&gt;'))</span></code> dans <code class="docutils literal notranslate"><span class="pre">config/urls.py</span></code></p></li>
+</ol>
+<p>Ces deux étapes sont <strong>manuelles</strong> et volontairement laissées à la charge du développeur pour éviter des modifications automatiques de fichiers existants.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">djapp_pro</span></code> utilise <code class="docutils literal notranslate"><span class="pre">manage.py</span> <span class="pre">startapp</span></code>, ce qui nécessite que Django soit correctement configuré (<code class="docutils literal notranslate"><span class="pre">config/settings/dev.py</span></code> accessible et <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> incluant <code class="docutils literal notranslate"><span class="pre">apps/</span></code>). Elle ne doit donc être appelée qu’une fois le projet <code class="docutils literal notranslate"><span class="pre">uvdjpro</span></code> créé et fonctionnel.</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="section-8-djmodel">
+<h2>Section 8 — <code class="docutils literal notranslate"><span class="pre">djmodel</span></code><a class="headerlink" href="#section-8-djmodel" title="Lien vers cette rubrique">¶</a></h2>
+<section id="id1">
+<h3>Signature<a class="headerlink" href="#id1" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">djmodel</span> <span class="n">-app</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;</span> <span class="n">-model</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;</span> <span class="p">[</span><span class="n">-fields</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;]</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>Description<a class="headerlink" href="#id2" title="Lien vers cette rubrique">¶</a></h3>
+<p>Ajoute une classe de modèle Django dans <code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/models.py</span></code> en mode <strong>append</strong> (le fichier existant est conservé).</p>
+</section>
+<section id="parametres">
+<h3>Paramètres<a class="headerlink" href="#parametres" title="Lien vers cette rubrique">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Paramètre</p></th>
+<th class="head"><p>Obligatoire</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-app</span></code></p></td>
+<td><p>Oui</p></td>
+<td><p>Nom de l’application cible (dossier dans <code class="docutils literal notranslate"><span class="pre">apps/</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-model</span></code></p></td>
+<td><p>Oui</p></td>
+<td><p>Nom du modèle en <code class="docutils literal notranslate"><span class="pre">snake_case</span></code> ou <code class="docutils literal notranslate"><span class="pre">PascalCase</span></code> (converti automatiquement en PascalCase)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-fields</span></code></p></td>
+<td><p>Non</p></td>
+<td><p>Chaîne de champs séparés par des virgules, insérés tels quels dans le corps du modèle</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="transformation-du-nom">
+<h3>Transformation du nom<a class="headerlink" href="#transformation-du-nom" title="Lien vers cette rubrique">¶</a></h3>
+<p>Le premier caractère est mis en majuscule : <code class="docutils literal notranslate"><span class="pre">article</span></code> → <code class="docutils literal notranslate"><span class="pre">Article</span></code>.</p>
+</section>
+<section id="format-du-parametre-fields">
+<h3>Format du paramètre <code class="docutils literal notranslate"><span class="pre">-fields</span></code><a class="headerlink" href="#format-du-parametre-fields" title="Lien vers cette rubrique">¶</a></h3>
+<p>Les champs sont séparés par des virgules et insérés avec une indentation de 4 espaces :</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">djmodel</span> <span class="n">-app</span> <span class="n">blog</span> <span class="n">-model</span> <span class="n">Article</span> <span class="n">-fields</span> <span class="s2">&quot;title = models.CharField(max_length=200),body = models.TextField()&quot;</span>
+</pre></div>
+</div>
+<p>Produit :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Article</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Article(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pk</span><span class="si">}</span><span class="s2">)&quot;</span>
+</pre></div>
+</div>
+<p>Si <code class="docutils literal notranslate"><span class="pre">-fields</span></code> est omis, le corps contient <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">fields</span> <span class="pre">here</span></code> comme placeholder.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="section-9-djview">
+<h2>Section 9 — <code class="docutils literal notranslate"><span class="pre">djview</span></code><a class="headerlink" href="#section-9-djview" title="Lien vers cette rubrique">¶</a></h2>
+<section id="id3">
+<h3>Signature<a class="headerlink" href="#id3" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">djview</span> <span class="n">-app</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;</span> <span class="n">-view</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;</span> <span class="p">[</span><span class="n">-urlPath</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;]</span> <span class="p">[</span><span class="n">-templateName</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;]</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Description<a class="headerlink" href="#id4" title="Lien vers cette rubrique">¶</a></h3>
+<p>Génère simultanément une vue (fonction), une entrée URL et un template HTML pour une application existante. Tous les fichiers sont ouverts en mode <strong>append</strong> pour <code class="docutils literal notranslate"><span class="pre">views.py</span></code> et <code class="docutils literal notranslate"><span class="pre">urls.py</span></code>.</p>
+</section>
+<section id="id5">
+<h3>Paramètres<a class="headerlink" href="#id5" title="Lien vers cette rubrique">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Paramètre</p></th>
+<th class="head"><p>Obligatoire</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-app</span></code></p></td>
+<td><p>Oui</p></td>
+<td><p>Application cible</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-view</span></code></p></td>
+<td><p>Oui</p></td>
+<td><p>Nom de la vue (converti : premier char en minuscule pour la fonction)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-urlPath</span></code></p></td>
+<td><p>Non</p></td>
+<td><p>Chemin URL. Par défaut : <code class="docutils literal notranslate"><span class="pre">view.ToLower()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-templateName</span></code></p></td>
+<td><p>Non</p></td>
+<td><p>Chemin du template. Par défaut : <code class="docutils literal notranslate"><span class="pre">&lt;app&gt;/&lt;view&gt;.html</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="fichiers-modifies-crees">
+<h3>Fichiers modifiés / créés<a class="headerlink" href="#fichiers-modifies-crees" title="Lien vers cette rubrique">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier</p></th>
+<th class="head"><p>Opération</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/views.py</span></code></p></td>
+<td><p>Append : fonction <code class="docutils literal notranslate"><span class="pre">&lt;viewFunc&gt;(request)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/urls.py</span></code></p></td>
+<td><p>Append : ligne <code class="docutils literal notranslate"><span class="pre">path(...)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/templates/&lt;app&gt;/&lt;view&gt;.html</span></code></p></td>
+<td><p>Création : template étendant <code class="docutils literal notranslate"><span class="pre">layouts/main-layout.html</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="section-10-djcrud">
+<h2>Section 10 — <code class="docutils literal notranslate"><span class="pre">djcrud</span></code><a class="headerlink" href="#section-10-djcrud" title="Lien vers cette rubrique">¶</a></h2>
+<section id="id6">
+<h3>Signature<a class="headerlink" href="#id6" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">djcrud</span> <span class="n">-app</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;</span> <span class="n">-model</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;</span> <span class="p">[</span><span class="n">-fields</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;]</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>Description<a class="headerlink" href="#id7" title="Lien vers cette rubrique">¶</a></h3>
+<p>Génère l’ensemble des fichiers nécessaires à un CRUD complet pour un modèle : modèle, formulaire, 5 vues (fonctions), 5 routes URL et 4 templates.</p>
+</section>
+<section id="id8">
+<h3>Fichiers générés<a class="headerlink" href="#id8" title="Lien vers cette rubrique">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier</p></th>
+<th class="head"><p>Contenu</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/models.py</span></code></p></td>
+<td><p>Append : classe <code class="docutils literal notranslate"><span class="pre">&lt;Model&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/forms.py</span></code></p></td>
+<td><p>Création : <code class="docutils literal notranslate"><span class="pre">&lt;Model&gt;Form(ModelForm)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/views.py</span></code></p></td>
+<td><p>Append : list, detail, create, update, delete</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/urls.py</span></code></p></td>
+<td><p>Append : 5 chemins URL</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/templates/&lt;app&gt;/&lt;model&gt;_list.html</span></code></p></td>
+<td><p>Liste avec boucle <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">for</span> <span class="pre">%}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/templates/&lt;app&gt;/&lt;model&gt;_detail.html</span></code></p></td>
+<td><p>Détail avec boutons modifier / supprimer</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/templates/&lt;app&gt;/&lt;model&gt;_form.html</span></code></p></td>
+<td><p>Formulaire partagé create/update</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;app&gt;/templates/&lt;app&gt;/&lt;model&gt;_confirm_delete.html</span></code></p></td>
+<td><p>Confirmation de suppression</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="routes-generees">
+<h3>Routes générées<a class="headerlink" href="#routes-generees" title="Lien vers cette rubrique">¶</a></h3>
+<p>Les URLs utilisent le namespace de l’application. Exemple pour <code class="docutils literal notranslate"><span class="pre">-model</span> <span class="pre">article</span></code> dans <code class="docutils literal notranslate"><span class="pre">-app</span> <span class="pre">blog</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;article/&quot;</span><span class="p">,</span>              <span class="n">views</span><span class="o">.</span><span class="n">article_list</span><span class="p">,</span>   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;article_list&quot;</span><span class="p">),</span>
+<span class="n">path</span><span class="p">(</span><span class="s2">&quot;article/&lt;int:pk&gt;/&quot;</span><span class="p">,</span>     <span class="n">views</span><span class="o">.</span><span class="n">article_detail</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;article_detail&quot;</span><span class="p">),</span>
+<span class="n">path</span><span class="p">(</span><span class="s2">&quot;article/create/&quot;</span><span class="p">,</span>       <span class="n">views</span><span class="o">.</span><span class="n">article_create</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;article_create&quot;</span><span class="p">),</span>
+<span class="n">path</span><span class="p">(</span><span class="s2">&quot;article/&lt;int:pk&gt;/update/&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">article_update</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;article_update&quot;</span><span class="p">),</span>
+<span class="n">path</span><span class="p">(</span><span class="s2">&quot;article/&lt;int:pk&gt;/delete/&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">article_delete</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;article_delete&quot;</span><span class="p">),</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les vues <code class="docutils literal notranslate"><span class="pre">create</span></code> et <code class="docutils literal notranslate"><span class="pre">update</span></code> partagent le même template <code class="docutils literal notranslate"><span class="pre">&lt;model&gt;_form.html</span></code>. La vue <code class="docutils literal notranslate"><span class="pre">update</span></code> passe en plus l’objet <code class="docutils literal notranslate"><span class="pre">object</span></code> au contexte pour permettre la pré-remplissage.</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="section-11-djapi">
+<h2>Section 11 — <code class="docutils literal notranslate"><span class="pre">djapi</span></code><a class="headerlink" href="#section-11-djapi" title="Lien vers cette rubrique">¶</a></h2>
+<section id="id9">
+<h3>Signature<a class="headerlink" href="#id9" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">djapi</span> <span class="n">-name</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h3>Description<a class="headerlink" href="#id10" title="Lien vers cette rubrique">¶</a></h3>
+<p>Crée une application Django REST Framework. Installe <code class="docutils literal notranslate"><span class="pre">djangorestframework</span></code> via <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">add</span></code>, crée l’application dans <code class="docutils literal notranslate"><span class="pre">apps/&lt;name&gt;/</span></code> et génère les fichiers DRF de base.</p>
+</section>
+<section id="id11">
+<h3>Fichiers générés<a class="headerlink" href="#id11" title="Lien vers cette rubrique">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier</p></th>
+<th class="head"><p>Contenu</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;name&gt;/serializers.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ExampleSerializer(ModelSerializer)</span></code> sur le modèle <code class="docutils literal notranslate"><span class="pre">Example</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;name&gt;/views.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ExampleViewSet(ModelViewSet)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">apps/&lt;name&gt;/urls.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DefaultRouter</span></code> enregistrant <code class="docutils literal notranslate"><span class="pre">ExampleViewSet</span></code> sur <code class="docutils literal notranslate"><span class="pre">/examples/</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les fichiers générés utilisent <code class="docutils literal notranslate"><span class="pre">Example</span></code> comme modèle placeholder. Ils sont conçus comme point de départ : le développeur remplace <code class="docutils literal notranslate"><span class="pre">Example</span></code> par le vrai modèle de l’application.</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="section-12-uvdjpro">
+<h2>Section 12 — <code class="docutils literal notranslate"><span class="pre">uvdjpro</span></code><a class="headerlink" href="#section-12-uvdjpro" title="Lien vers cette rubrique">¶</a></h2>
+<section id="id12">
+<h3>Signature<a class="headerlink" href="#id12" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">uvdjpro</span> <span class="n">-project</span> <span class="p">&lt;</span><span class="n">string</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="id13">
+<h3>Description<a class="headerlink" href="#id13" title="Lien vers cette rubrique">¶</a></h3>
+<p>Générateur de projet complet. Crée un projet Django full-stack depuis zéro dans un nouveau dossier, installe toutes les dépendances, configure les settings, génère les applications <code class="docutils literal notranslate"><span class="pre">users</span></code> et <code class="docutils literal notranslate"><span class="pre">maintenance</span></code>, crée tous les templates, exécute les migrations initiales et ouvre le projet dans VS Code.</p>
+<p><strong>Durée estimée</strong> : 2 à 5 minutes selon la vitesse de connexion (installation des paquets Python et npm).</p>
+</section>
+<section id="normalisation-des-noms">
+<h3>Normalisation des noms<a class="headerlink" href="#normalisation-des-noms" title="Lien vers cette rubrique">¶</a></h3>
+<p>À partir du paramètre <code class="docutils literal notranslate"><span class="pre">-project</span></code>, trois variantes sont dérivées :</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 30.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Exemple</p></th>
+<th class="head"><p>Utilisation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">$project_snake</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mon_projet</span></code></p></td>
+<td><p>Nom du dossier, base de données, <code class="docutils literal notranslate"><span class="pre">POSTGRES_DB</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">$project_kebab</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mon-projet</span></code></p></td>
+<td><p>Image Docker GHCR, domaine Nginx, <code class="docutils literal notranslate"><span class="pre">docker-compose.prod.yml</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">$project_title</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Mon</span> <span class="pre">Projet</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;title&gt;</span></code> HTML, README, manifest PWA</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sequence-d-execution-detaillee">
+<h3>Séquence d’exécution détaillée<a class="headerlink" href="#sequence-d-execution-detaillee" title="Lien vers cette rubrique">¶</a></h3>
+<p>La génération suit un ordre précis conçu pour éviter les erreurs circulaires de chargement Django :</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5.0%" />
+<col style="width: 30.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Action</p></th>
+<th class="head"><p>Raison de l’ordre</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">init</span></code></p></td>
+<td><p>Initialise le projet uv</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">add</span> <span class="pre">django</span> <span class="pre">...</span></code></p></td>
+<td><p>Installe toutes les dépendances</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">django-admin</span> <span class="pre">startproject</span> <span class="pre">config</span> <span class="pre">.</span></code></p></td>
+<td><p>Crée le squelette Django</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Réécriture de <code class="docutils literal notranslate"><span class="pre">manage.py</span></code>, <code class="docutils literal notranslate"><span class="pre">wsgi.py</span></code>, <code class="docutils literal notranslate"><span class="pre">asgi.py</span></code></p></td>
+<td><p>Injecte <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> + <code class="docutils literal notranslate"><span class="pre">config.settings.dev</span></code> <strong>avant</strong> tout appel Django</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Déplacement de <code class="docutils literal notranslate"><span class="pre">config/settings.py</span></code></p></td>
+<td><p>Libère la place pour le package <code class="docutils literal notranslate"><span class="pre">config/settings/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Création de <code class="docutils literal notranslate"><span class="pre">config/settings/base.py</span></code> et <code class="docutils literal notranslate"><span class="pre">dev.py</span></code></p></td>
+<td><p>Django peut maintenant démarrer correctement</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Création manuelle de l’app <code class="docutils literal notranslate"><span class="pre">theme</span></code></p></td>
+<td><p>Sans <code class="docutils literal notranslate"><span class="pre">manage.py</span></code> (évite le chargement circulaire)</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Création manuelle des apps <code class="docutils literal notranslate"><span class="pre">users</span></code> et <code class="docutils literal notranslate"><span class="pre">maintenance</span></code></p></td>
+<td><p>Idem — <code class="docutils literal notranslate"><span class="pre">startapp</span></code> est évité car <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code> les référence déjà</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Génération de tous les fichiers (settings, templates, CSS, Docker…)</p></td>
+<td><p>Ordre indépendant une fois Django opérationnel</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">makemigrations</span> <span class="pre">users</span></code></p></td>
+<td><p>Crée <code class="docutils literal notranslate"><span class="pre">0001_initial.py</span></code> pour le User custom</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">migrate</span></code></p></td>
+<td><p>Applique toutes les migrations (SQLite dev)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="dependances-installees">
+<h3>Dépendances installées<a class="headerlink" href="#dependances-installees" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>django
+gunicorn
+psycopg[binary]
+redis
+celery
+flower
+django-environ
+django-allauth[socialaccount]
+django-tailwind[reload]      ← inclut django_browser_reload
+whitenoise
+channels
+channels-redis
+djangorestframework
+pillow
+</pre></div>
+</div>
+</section>
+<section id="structure-generee">
+<h3>Structure générée<a class="headerlink" href="#structure-generee" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;project_snake&gt;/
+├── manage.py                        ← réécrit (sys.path + settings.dev)
+├── .env                             ← SECRET_KEY et mots de passe générés aléatoirement
+├── .gitignore
+├── Makefile
+├── README.md
+├── Dockerfile
+├── docker-compose.dev.yml
+├── docker-compose.prod.yml
+├── pyproject.toml                   ← géré par uv
+├── apps/
+│   ├── users/                       ← User custom (AbstractUser)
+│   │   ├── models.py, forms.py, admin.py, adapters.py
+│   │   ├── views.py                 ← CBV : ProfileView, ProfileEditView
+│   │   ├── urls.py
+│   │   ├── migrations/0001_initial.py
+│   │   └── templates/users/profile.html, profile_edit.html
+│   └── maintenance/
+│       ├── views.py, urls.py
+│       └── apps.py
+├── config/
+│   ├── urls.py
+│   ├── wsgi.py, asgi.py             ← réécrits
+│   └── settings/
+│       ├── __init__.py
+│       ├── base.py                  ← INSTALLED_APPS, allauth, Celery, Channels
+│       ├── dev.py                   ← SQLite3, consolemail
+│       ├── prod.py                  ← PostgreSQL, SMTP, HTTPS
+│       ├── test.py                  ← SQLite :memory:
+│       └── logging.py
+├── templates/
+│   ├── base.html                    ← AlpineJS + HTMX + Tailwind + Google Fonts
+│   ├── layouts/
+│   │   ├── main-layout.html
+│   │   └── maintenance-layout.html  ← layout CSS autonome (.ml-*)
+│   ├── includes/
+│   │   ├── navbar.html, footer.html, messages.html
+│   ├── account/                     ← overrides allauth
+│   │   ├── base.html                ← charge auth-layout.css
+│   │   ├── login.html, signup.html, logout.html, password_reset.html
+│   │   └── email/
+│   └── maintenance/
+│       ├── maintenance.html
+│       └── errors/400.html, 403.html, 404.html, 500.html
+├── static/
+│   ├── css/
+│   │   ├── styles.css
+│   │   └── layouts/
+│   │       ├── maintenance-layout.css   ← animations .ml-* autonomes
+│   │       └── auth-layout.css          ← styles .al-* autonomes
+│   ├── js/app.js
+│   ├── images/
+│   └── manifest.json
+├── theme/                           ← app django-tailwind
+│   ├── apps.py
+│   └── static_src/
+│       ├── package.json
+│       ├── tailwind.config.js
+│       └── src/styles.css           ← @tailwind + composants .btn
+├── nginx/default.conf
+└── .github/workflows/deploy.yml
+</pre></div>
+</div>
+</section>
+<section id="architecture-des-settings">
+<h3>Architecture des settings<a class="headerlink" href="#architecture-des-settings" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>config/settings/
+├── base.py    ← commun à tous les environnements
+├── dev.py     ← hérite de base, ajoute SQLite3 + debug email
+├── prod.py    ← hérite de base, ajoute PostgreSQL + SMTP + HTTPS headers
+└── test.py    ← hérite de base, SQLite :memory: + locmem email
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">manage.py</span></code> pointe sur <code class="docutils literal notranslate"><span class="pre">config.settings.dev</span></code>.
+<code class="docutils literal notranslate"><span class="pre">wsgi.py</span></code> et <code class="docutils literal notranslate"><span class="pre">asgi.py</span></code> pointent sur <code class="docutils literal notranslate"><span class="pre">config.settings.prod</span></code>.</p>
+<p>L’environnement peut être surchargé via la variable d’environnement <code class="docutils literal notranslate"><span class="pre">DJANGO_SETTINGS_MODULE</span></code>.</p>
+</section>
+<section id="architecture-css-strategie-sans-tailwind-jit">
+<h3>Architecture CSS — stratégie sans Tailwind JIT<a class="headerlink" href="#architecture-css-strategie-sans-tailwind-jit" title="Lien vers cette rubrique">¶</a></h3>
+<p>Deux fichiers CSS sont servis directement via <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">static</span> <span class="pre">%}</span></code> sans passer par la compilation Tailwind :</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier</p></th>
+<th class="head"><p>Contexte d’utilisation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">static/css/layouts/maintenance-layout.css</span></code></p></td>
+<td><p>Pages de maintenance et d’erreurs (classes <code class="docutils literal notranslate"><span class="pre">.ml-*</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">static/css/layouts/auth-layout.css</span></code></p></td>
+<td><p>Pages d’authentification allauth (classes <code class="docutils literal notranslate"><span class="pre">.al-*</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Cette stratégie garantit que ces pages s’affichent correctement <strong>même si ``make tailwind`` n’a jamais été lancé</strong>, ce qui est le cas lors du premier <code class="docutils literal notranslate"><span class="pre">djrun</span></code> sur un projet fraîchement créé.</p>
+<p>Les animations (<code class="docutils literal notranslate"><span class="pre">fadeUp</span></code>, <code class="docutils literal notranslate"><span class="pre">spinCW/CCW</span></code>, <code class="docutils literal notranslate"><span class="pre">barSlide</span></code>, <code class="docutils literal notranslate"><span class="pre">fillBar</span></code>, <code class="docutils literal notranslate"><span class="pre">blink</span></code>, <code class="docutils literal notranslate"><span class="pre">pulse</span></code>) sont définies dans ces fichiers car elles ne peuvent pas être exprimées en classes Tailwind utilitaires.</p>
+</section>
+<section id="application-users">
+<h3>Application <code class="docutils literal notranslate"><span class="pre">users</span></code><a class="headerlink" href="#application-users" title="Lien vers cette rubrique">¶</a></h3>
+<p>L’application <code class="docutils literal notranslate"><span class="pre">users</span></code> remplace l’application Django native <code class="docutils literal notranslate"><span class="pre">accounts</span></code> pour éviter la collision d’URL avec django-allauth :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># config/urls.py</span>
+<span class="n">path</span><span class="p">(</span><span class="s2">&quot;users/&quot;</span><span class="p">,</span>    <span class="n">include</span><span class="p">(</span><span class="s2">&quot;users.urls&quot;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;users&quot;</span><span class="p">)),</span>   <span class="c1"># profil, édition</span>
+<span class="n">path</span><span class="p">(</span><span class="s2">&quot;accounts/&quot;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;allauth.urls&quot;</span><span class="p">)),</span>                    <span class="c1"># login, signup, OAuth</span>
+</pre></div>
+</div>
+<p>Le modèle <code class="docutils literal notranslate"><span class="pre">User</span></code> étend <code class="docutils literal notranslate"><span class="pre">AbstractUser</span></code> avec deux champs supplémentaires : <code class="docutils literal notranslate"><span class="pre">avatar</span></code> (<code class="docutils literal notranslate"><span class="pre">ImageField</span></code>) et <code class="docutils literal notranslate"><span class="pre">bio</span></code> (<code class="docutils literal notranslate"><span class="pre">TextField</span></code>).</p>
+<p>Les vues sont basées sur des classes :</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Classe</p></th>
+<th class="head"><p>URL</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ProfileView</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/users/profile/</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LoginRequiredMixin</span> <span class="pre">+</span> <span class="pre">TemplateView</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ProfileEditView</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/users/profile/edit/</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LoginRequiredMixin</span> <span class="pre">+</span> <span class="pre">UpdateView</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Deux adapteurs allauth sont définis dans <code class="docutils literal notranslate"><span class="pre">users/adapters.py</span></code> :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UserAdapter</span></code> : sauvegarde les champs <code class="docutils literal notranslate"><span class="pre">avatar</span></code> et <code class="docutils literal notranslate"><span class="pre">bio</span></code> lors du signup</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SocialAccountAdapter</span></code> : connecte automatiquement un compte social si l’email existe déjà en base</p></li>
+</ul>
+</section>
+<section id="fichier-env-genere">
+<h3>Fichier <code class="docutils literal notranslate"><span class="pre">.env</span></code> généré<a class="headerlink" href="#fichier-env-genere" title="Lien vers cette rubrique">¶</a></h3>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">SECRET_KEY</span><span class="o">=</span><span class="s">&lt;64 chars aléatoires&gt;</span>
+<span class="na">DOMAIN</span><span class="o">=</span><span class="s">&lt;project_kebab&gt;.laurentjouron.dev</span>
+
+<span class="na">POSTGRES_DB</span><span class="o">=</span><span class="s">&lt;project_snake&gt;</span>
+<span class="na">POSTGRES_USER</span><span class="o">=</span><span class="s">&lt;project_snake&gt;</span>
+<span class="na">POSTGRES_PASSWORD</span><span class="o">=</span><span class="s">&lt;32 chars aléatoires&gt;</span>
+
+<span class="na">REDIS_URL</span><span class="o">=</span><span class="s">redis://redis:6379/0</span>
+
+<span class="na">GOOGLE_CLIENT_ID</span><span class="o">=</span>
+<span class="na">GOOGLE_CLIENT_SECRET</span><span class="o">=</span>
+<span class="na">FACEBOOK_APP_ID</span><span class="o">=</span>
+<span class="na">FACEBOOK_APP_SECRET</span><span class="o">=</span>
+
+<span class="na">DEFAULT_FROM_EMAIL</span><span class="o">=</span><span class="s">noreply@&lt;project_kebab&gt;.laurentjouron.dev</span>
+<span class="na">EMAIL_HOST</span><span class="o">=</span><span class="s">smtp.mailgun.org</span>
+<span class="na">EMAIL_PORT</span><span class="o">=</span><span class="s">587</span>
+<span class="na">EMAIL_HOST_USER</span><span class="o">=</span>
+<span class="na">EMAIL_HOST_PASSWORD</span><span class="o">=</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code> et <code class="docutils literal notranslate"><span class="pre">POSTGRES_PASSWORD</span></code> sont générés aléatoirement à chaque exécution via :</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">-join</span> <span class="p">((</span><span class="n">48</span><span class="p">..</span><span class="n">57</span><span class="p">)+(</span><span class="n">65</span><span class="p">..</span><span class="n">90</span><span class="p">)+(</span><span class="n">97</span><span class="p">..</span><span class="n">122</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Get-Random</span> <span class="n">-Count</span> <span class="n">64</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="no">[char]</span><span class="nv">$_</span><span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="infrastructure-docker">
+<h3>Infrastructure Docker<a class="headerlink" href="#infrastructure-docker" title="Lien vers cette rubrique">¶</a></h3>
+<p>Deux fichiers <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> sont générés :</p>
+<p><strong>docker-compose.dev.yml</strong> — développement conteneurisé (sans PostgreSQL, SQLite utilisé) :</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w">   </span><span class="c1"># Django runserver</span>
+<span class="w">  </span><span class="nt">redis</span><span class="p">:</span><span class="w"> </span><span class="c1"># Pour Celery</span>
+</pre></div>
+</div>
+<p><strong>docker-compose.prod.yml</strong> — production complète :</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">nginx</span><span class="p">:</span><span class="w">    </span><span class="c1"># Reverse proxy Cloudflare-ready</span>
+<span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w">      </span><span class="c1"># Image GHCR gunicorn</span>
+<span class="w">  </span><span class="nt">postgres</span><span class="p">:</span><span class="w"> </span><span class="c1"># PostgreSQL 16</span>
+<span class="w">  </span><span class="nt">redis</span><span class="p">:</span><span class="w">    </span><span class="c1"># Redis 7</span>
+<span class="w">  </span><span class="nt">worker</span><span class="p">:</span><span class="w">   </span><span class="c1"># Celery worker</span>
+<span class="w">  </span><span class="nt">beat</span><span class="p">:</span><span class="w">     </span><span class="c1"># Celery beat</span>
+<span class="w">  </span><span class="nt">flower</span><span class="p">:</span><span class="w">   </span><span class="c1"># Monitoring Celery</span>
+</pre></div>
+</div>
+<p>Le <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> utilise un build multi-stage (<code class="docutils literal notranslate"><span class="pre">python:3.12-slim</span></code>) avec <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span> <span class="pre">--frozen</span></code> et <code class="docutils literal notranslate"><span class="pre">collectstatic</span></code> intégrés.</p>
+</section>
+<section id="ci-cd-github-actions">
+<h3>CI/CD GitHub Actions<a class="headerlink" href="#ci-cd-github-actions" title="Lien vers cette rubrique">¶</a></h3>
+<p>Le workflow <code class="docutils literal notranslate"><span class="pre">.github/workflows/deploy.yml</span></code> déclenché sur push <code class="docutils literal notranslate"><span class="pre">main</span></code> exécute deux jobs :</p>
+<ol class="arabic simple">
+<li><p><strong>build</strong> : build + push de l’image Docker vers GHCR (<code class="docutils literal notranslate"><span class="pre">ghcr.io/laurentjouron/&lt;repo&gt;:latest</span></code>)</p></li>
+<li><p><strong>deploy</strong> : connexion SSH au NAS Synology et <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">pull</span> <span class="pre">&amp;&amp;</span> <span class="pre">up</span> <span class="pre">-d</span></code></p></li>
+</ol>
+<p>Secrets GitHub requis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GHCR_TOKEN      ← Personal Access Token GitHub (read:packages, write:packages)
+NAS_HOST        ← IP ou hostname du NAS
+NAS_USER        ← Utilisateur SSH
+NAS_SSH_KEY     ← Clé privée SSH
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="points-techniques-importants">
+<h2>Points techniques importants<a class="headerlink" href="#points-techniques-importants" title="Lien vers cette rubrique">¶</a></h2>
+<section id="gestion-du-sys-path">
+<h3>Gestion du <code class="docutils literal notranslate"><span class="pre">sys.path</span></code><a class="headerlink" href="#gestion-du-sys-path" title="Lien vers cette rubrique">¶</a></h3>
+<p>La résolution d’imports des applications dans <code class="docutils literal notranslate"><span class="pre">apps/</span></code> repose sur l’injection de <code class="docutils literal notranslate"><span class="pre">apps/</span></code> dans <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> au démarrage de chaque point d’entrée Python :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># manage.py, wsgi.py, asgi.py</span>
+<span class="n">apps_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;apps&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">apps_dir</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">apps_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Cela permet de déclarer <code class="docutils literal notranslate"><span class="pre">&quot;users&quot;</span></code> dans <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code> (et non <code class="docutils literal notranslate"><span class="pre">&quot;apps.users&quot;</span></code>) et d’utiliser des imports relatifs normaux dans les applications.</p>
+<p>Contrainte : <code class="docutils literal notranslate"><span class="pre">apps/</span></code> <strong>ne doit pas</strong> contenir de fichier <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>. Un tel fichier transformerait <code class="docutils literal notranslate"><span class="pre">apps</span></code> en package Python, ce qui casserait les imports relatifs des applications.</p>
+</section>
+<section id="ordre-de-chargement-et-contrainte-installed-apps">
+<h3>Ordre de chargement et contrainte <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code><a class="headerlink" href="#ordre-de-chargement-et-contrainte-installed-apps" title="Lien vers cette rubrique">¶</a></h3>
+<p>Lors de l’exécution de <code class="docutils literal notranslate"><span class="pre">manage.py</span> <span class="pre">startapp</span></code>, Django charge <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code> pour valider les dépendances. Si <code class="docutils literal notranslate"><span class="pre">users</span></code> ou <code class="docutils literal notranslate"><span class="pre">maintenance</span></code> sont listés dans <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code> mais que leurs dossiers n’existent pas encore, Django lève une <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>.</p>
+<p>La solution retenue dans <code class="docutils literal notranslate"><span class="pre">uvdjpro</span></code> est de <strong>créer manuellement</strong> le contenu des apps <code class="docutils literal notranslate"><span class="pre">users</span></code> et <code class="docutils literal notranslate"><span class="pre">maintenance</span></code> (<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>, <code class="docutils literal notranslate"><span class="pre">apps.py</span></code>, <code class="docutils literal notranslate"><span class="pre">migrations/__init__.py</span></code>) sans utiliser <code class="docutils literal notranslate"><span class="pre">manage.py</span> <span class="pre">startapp</span></code>. L’app <code class="docutils literal notranslate"><span class="pre">theme</span></code> (django-tailwind) suit la même logique.</p>
+</section>
+<section id="encodage-des-here-strings-powershell">
+<h3>Encodage des here-strings PowerShell<a class="headerlink" href="#encodage-des-here-strings-powershell" title="Lien vers cette rubrique">¶</a></h3>
+<p>Tous les here-strings utilisent la syntaxe <code class="docutils literal notranslate"><span class="pre">(&#64;'</span> <span class="pre">...</span> <span class="pre">'&#64;)</span></code> (single-quoted) avec le chaînage <code class="docutils literal notranslate"><span class="pre">.Replace()</span></code> immédiat sur la même expression entre parenthèses. La syntaxe <code class="docutils literal notranslate"><span class="pre">&#64;'</span> <span class="pre">...</span> <span class="pre">'&#64;\n.Replace(...)</span></code> (point sur la ligne suivante) est invalide en PowerShell et constitue l’erreur la plus courante lors de la maintenance du fichier.</p>
+<p>Les here-strings qui doivent interpoler des variables PowerShell (comme <code class="docutils literal notranslate"><span class="pre">$project_title</span></code> dans les templates HTML ou <code class="docutils literal notranslate"><span class="pre">$project_kebab</span></code> dans les fichiers Docker) utilisent la syntaxe <code class="docutils literal notranslate"><span class="pre">&#64;&quot;</span> <span class="pre">...</span> <span class="pre">&quot;&#64;</span></code> (double-quoted).</p>
+<p>Tous les fichiers sont écrits en <code class="docutils literal notranslate"><span class="pre">-Encoding</span> <span class="pre">utf8</span></code> pour garantir la compatibilité avec Python et les navigateurs.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="utilisation.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Utilisation</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">uv</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024-2026, Laurent Jouron
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link fa-brands fa-solid fa-github fa-2x" href="https://github.com/LaurentJouron/madoc" aria-label="GitHub"></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Documentation technique</a><ul>
+<li><a class="reference internal" href="#vue-d-ensemble">Vue d’ensemble</a></li>
+<li><a class="reference internal" href="#installation-et-prerequis">Installation et prérequis</a><ul>
+<li><a class="reference internal" href="#prerequis-systeme">Prérequis système</a></li>
+<li><a class="reference internal" href="#emplacement-du-profil">Emplacement du profil</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#section-1-preambule-et-helpers">Section 1 — Préambule et helpers</a><ul>
+<li><a class="reference internal" href="#comportement-global">Comportement global</a></li>
+<li><a class="reference internal" href="#fonctions-utilitaires-internes">Fonctions utilitaires internes</a><ul>
+<li><a class="reference internal" href="#new-directorysafe"><code class="docutils literal notranslate"><span class="pre">New-DirectorySafe</span></code></a></li>
+<li><a class="reference internal" href="#to-titlecasefromsnake"><code class="docutils literal notranslate"><span class="pre">To-TitleCaseFromSnake</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#section-2-starship-prompt">Section 2 — Starship Prompt</a></li>
+<li><a class="reference internal" href="#section-3-psreadline">Section 3 — PSReadLine</a></li>
+<li><a class="reference internal" href="#section-4-alias-git">Section 4 — Alias Git</a></li>
+<li><a class="reference internal" href="#section-5-alias-uv">Section 5 — Alias uv</a></li>
+<li><a class="reference internal" href="#section-6-commandes-django">Section 6 — Commandes Django</a></li>
+<li><a class="reference internal" href="#section-7-djapp-pro">Section 7 — <code class="docutils literal notranslate"><span class="pre">djapp_pro</span></code></a><ul>
+<li><a class="reference internal" href="#signature">Signature</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#fichiers-generes">Fichiers générés</a></li>
+<li><a class="reference internal" href="#comportement-post-generation">Comportement post-génération</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#section-8-djmodel">Section 8 — <code class="docutils literal notranslate"><span class="pre">djmodel</span></code></a><ul>
+<li><a class="reference internal" href="#id1">Signature</a></li>
+<li><a class="reference internal" href="#id2">Description</a></li>
+<li><a class="reference internal" href="#parametres">Paramètres</a></li>
+<li><a class="reference internal" href="#transformation-du-nom">Transformation du nom</a></li>
+<li><a class="reference internal" href="#format-du-parametre-fields">Format du paramètre <code class="docutils literal notranslate"><span class="pre">-fields</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#section-9-djview">Section 9 — <code class="docutils literal notranslate"><span class="pre">djview</span></code></a><ul>
+<li><a class="reference internal" href="#id3">Signature</a></li>
+<li><a class="reference internal" href="#id4">Description</a></li>
+<li><a class="reference internal" href="#id5">Paramètres</a></li>
+<li><a class="reference internal" href="#fichiers-modifies-crees">Fichiers modifiés / créés</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#section-10-djcrud">Section 10 — <code class="docutils literal notranslate"><span class="pre">djcrud</span></code></a><ul>
+<li><a class="reference internal" href="#id6">Signature</a></li>
+<li><a class="reference internal" href="#id7">Description</a></li>
+<li><a class="reference internal" href="#id8">Fichiers générés</a></li>
+<li><a class="reference internal" href="#routes-generees">Routes générées</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#section-11-djapi">Section 11 — <code class="docutils literal notranslate"><span class="pre">djapi</span></code></a><ul>
+<li><a class="reference internal" href="#id9">Signature</a></li>
+<li><a class="reference internal" href="#id10">Description</a></li>
+<li><a class="reference internal" href="#id11">Fichiers générés</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#section-12-uvdjpro">Section 12 — <code class="docutils literal notranslate"><span class="pre">uvdjpro</span></code></a><ul>
+<li><a class="reference internal" href="#id12">Signature</a></li>
+<li><a class="reference internal" href="#id13">Description</a></li>
+<li><a class="reference internal" href="#normalisation-des-noms">Normalisation des noms</a></li>
+<li><a class="reference internal" href="#sequence-d-execution-detaillee">Séquence d’exécution détaillée</a></li>
+<li><a class="reference internal" href="#dependances-installees">Dépendances installées</a></li>
+<li><a class="reference internal" href="#structure-generee">Structure générée</a></li>
+<li><a class="reference internal" href="#architecture-des-settings">Architecture des settings</a></li>
+<li><a class="reference internal" href="#architecture-css-strategie-sans-tailwind-jit">Architecture CSS — stratégie sans Tailwind JIT</a></li>
+<li><a class="reference internal" href="#application-users">Application <code class="docutils literal notranslate"><span class="pre">users</span></code></a></li>
+<li><a class="reference internal" href="#fichier-env-genere">Fichier <code class="docutils literal notranslate"><span class="pre">.env</span></code> généré</a></li>
+<li><a class="reference internal" href="#infrastructure-docker">Infrastructure Docker</a></li>
+<li><a class="reference internal" href="#ci-cd-github-actions">CI/CD GitHub Actions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#points-techniques-importants">Points techniques importants</a><ul>
+<li><a class="reference internal" href="#gestion-du-sys-path">Gestion du <code class="docutils literal notranslate"><span class="pre">sys.path</span></code></a></li>
+<li><a class="reference internal" href="#ordre-de-chargement-et-contrainte-installed-apps">Ordre de chargement et contrainte <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code></a></li>
+<li><a class="reference internal" href="#encodage-des-here-strings-powershell">Encodage des here-strings PowerShell</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=0ef26a9d"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=c136e461"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../_static/activate_tab.js"></script>
+    </body>
+</html>
